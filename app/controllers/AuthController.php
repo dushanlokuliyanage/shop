@@ -44,4 +44,52 @@ class AuthController
             }
         }
     }
+
+
+    public function logInForm()
+    {
+        require_once __DIR__ . "/../views/Auth/logIn.php";
+    }
+
+    public function logInUser()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $userModel = new User();
+            $errors = [];
+
+            $email = trim($_POST['email']);
+            $password = trim($_POST['password']);
+
+
+            $user = $userModel->findUserByEmail($email);
+
+            if (empty($email)) {
+                $errors[] = "Enter email";
+            } elseif (empty($password)) {
+                $errors[] = "Enter password";
+            } elseif (!$user) {
+                $errors[] = "Email is wrong";
+            } else {
+
+                if (!password_verify($password, $user['password'])) {
+                    $errors[] = "Password is wrong";
+                }
+            }
+
+            if (!empty($errors)) {
+
+                $cache = [$email, $password];
+                $_SESSION['LogCache'] = $cache;
+
+                $_SESSION['LogErrors'] = $errors;
+                header("Location: /logIn");
+                exit();
+            }
+
+         //   $_SESSION['user'] = $user['id'];
+            header("Location: /profile");
+            exit();
+        }
+    }
 }
