@@ -15,12 +15,12 @@ class User
     }
 
 
-public function findUserByEmail($email)
-{
-    $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `email` = ?");
-    $stmt->execute([$email]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+    public function findUserByEmail($email)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `email` = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
 
 
@@ -40,5 +40,31 @@ public function findUserByEmail($email)
             ':nic' =>  $userData['nic'],
 
         ]);
+    }
+
+
+    public function update($userData)
+    {
+
+        $stmt = $this->pdo->prepare("UPDATE  `users` SET `first_name`= ?, `last_name` = ?, `email` = ?, `phone_number` =?,`address`=?, `gender`=?, `nic`=? WHERE `id` = ?");
+
+        return $stmt->execute([
+            $userData['firstName'],
+            $userData['lastName'],
+            $userData['email'],
+            $userData['phoneNumber'],
+            $userData['address'],
+            $userData['gender'],
+            $userData['nic'],
+            $userData['id'],
+
+        ]);
+    }
+
+    public function delete($userData) {
+
+        $stmt = $this->pdo->prepare("DELETE FROM `users` WHERE `id` = :id");
+        $stmt->bindParam(':id', $userData['id']);
+        return $stmt->execute();
     }
 }

@@ -16,7 +16,7 @@ class AuthController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $user = new User();
+            $userModel = new User();
 
             $firstName   = trim($_POST['firstName']);
             $lastName    = trim($_POST['lastName']);
@@ -27,7 +27,7 @@ class AuthController
             $gender      = trim($_POST['gender']);
             $nic      = trim($_POST['nic']);
 
-            $saved = $user->create([
+            $saved = $userModel->create([
                 "firstName"   => $firstName,
                 "lastName"    => $lastName,
                 "email"       => $email,
@@ -37,6 +37,21 @@ class AuthController
                 "gender"      => $gender,
                 "nic" => $nic
             ]);
+
+
+            $user = $userModel->findUserByEmail($email);
+
+            $_SESSION['user'] =  [
+                'id' => $user['id'],
+                'first_name' => $user['first_name'],
+                'last_name' => $user['last_name'],
+                'email' => $user['email'],
+                'password' => $user['password'],
+                'phone_number' => $user['phone_number'],
+                'gender' => $user['gender'],
+                'address' => $user['address'],
+                'nic' => $user['nic'],
+            ];
 
             if ($saved) {
                 header("Location: /logIn");
@@ -87,7 +102,7 @@ class AuthController
                 exit();
             }
 
-         //   $_SESSION['user'] = $user['id'];
+            //   $_SESSION['user'] = $user['id'];
             header("Location: /profile");
             exit();
         }
