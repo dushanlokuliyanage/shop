@@ -1,12 +1,15 @@
 <?php
 
-class HomeController{
+require_once __DIR__ . "/../models/Product.php";
 
-    public function homeView() {
-      
-     require_once __DIR__ . "/../views/Home/index.php";
-        
+class HomeController
+{
 
+    public function homeView()
+    {
+
+        $productModel = new Product();
+        $products = $productModel->getAllProducts();
+        require_once __DIR__ . "/../views/Home/index.php";
     }
-
 }

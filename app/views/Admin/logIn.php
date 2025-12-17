@@ -12,14 +12,14 @@
 
 <body style="background-color: lightyellow;">
     <div class="container vh-100 d-flex justify-content-center align-items-center">
-        <div class="col-12 col-md-8 col-lg-4 bg-gradien p-5 shadow rounded  " style="background-color: white;">
+        <div class="col-12 col-md-8 col-lg-4 bg-gradien p-4 shadow rounded  " style="background-color: white;">
 
-            <form action="/logInProcess" method="POST">
+            <form action="/adminlogInProcess" method="POST">
 
                 <div class="row g-2">
 
-                    <div class="col-12 mb-5">
-                        <center> <samp class="title" style="font-size: x-large;">Log In Us</samp></center>
+                    <div class="col-12 mb-3">
+                        <center> <samp class="title" style="font-size: x-large;">Admin LogIn</samp></center>
                     </div>
 
                     <?php
@@ -33,7 +33,6 @@
                         }
                         unset($_SESSION['LogErrors']);
                     }
-
 
                     ?>
 
@@ -51,10 +50,6 @@
                     <div class="col-12 d-grid">
                         <button class="btn btn-outline-primary">Log In</button>
                     </div>
-
-                    <a href="/register"  style=" color: black; text-align: center;">
-                        Already haven't an account? Register
-                    </a>
 
                 </div>
 
