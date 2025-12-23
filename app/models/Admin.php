@@ -47,6 +47,12 @@ class Admin
         return $stmt->execute();
     }
 
+      public function deleteUserById($prodId)
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM `users` WHERE `id` = :id");
+        $stmt->bindParam(':id', $prodId, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 
     public function getAllUsers()
     {
@@ -62,10 +68,18 @@ class Admin
         return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     }
 
+    public function getAdminUserById($prodId)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `id` = :id");
+        $stmt->execute([':id' => $prodId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function updateProduct($prodData)
     {
 
-        $stmt = $this->pdo->prepare("UPDATE `products` SET `name` = ?, `description`=?, `qty` =?, `price`=? WHERE `id` = ? ");
+        $stmt = $this->pdo->prepare("UPDATE `products` SET `name` = ?, `description`=?, `qty` =?, `price`=?,  WHERE `id` = ? ");
 
         return $stmt->execute([
 
@@ -73,7 +87,20 @@ class Admin
             $prodData['productDes'],
             $prodData['productQty'],
             $prodData['productPrice'],
+      
             $prodData['id'],
+
+        ]);
+    }
+
+
+    public function updateNewImage($prodData){
+
+        $stmt = $this->pdo->prepare("UPDATE `products` SET `image` = ? WHERE `id` = ? ");
+
+          return $stmt->execute([
+            $prodData['image'],
+            $prodData['id']
 
         ]);
     }

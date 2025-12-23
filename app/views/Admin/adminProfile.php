@@ -9,6 +9,7 @@
 </head>
 <body>
     
+<h5 class="mt-1">Admin Logout</h5>
 
  <form action="/logoutAdminProcess" onsubmit="return confirm('Are you sure you want to logout?');">
         <div class="col-6 d-grid p-5">

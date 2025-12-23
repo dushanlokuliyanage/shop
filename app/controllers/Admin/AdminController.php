@@ -99,6 +99,23 @@ class AdminController
         require_once __DIR__ . "/../../views/Admin/adminSingleProduct.php";
     }
 
+    public function adminSingleUser()
+    {
+        if (!isset($_GET['id'])) {
+            die("ID is missing");
+        }
+
+        $userId = $_GET['id'];
+        $adminUserModel = new Admin();
+        $user = $adminUserModel->getAdminUserById($userId);
+
+
+        if (!$user) {
+            die("User not found");
+        }
+
+        require_once __DIR__ . "/../../views/Admin/adminSingleUser.php";
+    }
 
     public function  deleteProduct()
     {
@@ -135,6 +152,17 @@ class AdminController
             $productDes = $_POST['productDes'];
             $productQty = $_POST['productQty'];
 
+            $imageName = $_FILES['profileImage']['name'];
+            $tmpName = $_FILES['profileImage']['tmp_name'];
+
+            $newImage =  uniqid() . "_" . $imageName;
+            $uploadPath = __DIR__ . "/../../public/assets/images/" . $newImage;
+
+            if (move_uploaded_file($tmpName, $uploadPath)) {
+                $adminModul->updateProduct([
+                    "image"   => $newImage,
+                ]);
+            }
 
             $saved = $adminModul->updateProduct([
 
@@ -151,6 +179,37 @@ class AdminController
                 header("Location: /adminSingleProduct?id=" . $productId);
                 exit();
             }
+        }
+    }
+
+
+    public function uploadNewProductImage()
+    {
+        requireRole(['admin', 'staff']);
+
+        $adminModul = new Admin();
+
+        $productId = $_POST['id'];
+
+        $imageName = $_FILES['profileImage']['name'];
+        $tmpName = $_FILES['profileImage']['tmp_name'];
+
+        $newImage =  uniqid() . "_" . $imageName;
+
+        $uploadPath = __DIR__ . "/../../../public/assets/images/" . $newImage;
+
+        $saved = false;
+
+        if (move_uploaded_file($tmpName, $uploadPath)) {
+            $saved = $adminModul->updateNewImage([
+                "id" => $productId,
+                "image" => $newImage
+            ]);
+        }
+
+        if ($saved) {
+            header("Location: /adminSingleProduct?id=" . $productId);
+            exit();
         }
     }
 
@@ -177,5 +236,24 @@ class AdminController
         $userCount = $adminModel->getUserCount();
 
         require_once __DIR__ . "/../../views/Admin/users.php";
+    }
+
+    public function deleteUser()
+    {
+
+        requireRole(['admin']);
+
+        if (!isset($_GET['id'])) {
+            die("ID is missing");
+        }
+
+        $userId = $_GET['id'];
+        $adminModel = new Admin();
+        $deleteUser = $adminModel->deleteUserById($userId);
+
+        if ($deleteUser) {
+            header("Location: /users");
+            exit();
+        }
     }
 }

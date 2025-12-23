@@ -56,6 +56,12 @@ if ($uri === "/") {
     $AdminController->logoutAdmin();
 }elseif($uri === "/users"){
     $AdminController->users();
+}elseif($uri === "/deleteUserProcess"){
+     $AdminController->deleteUser();
+}elseif($uri === "/adminSingleUser"){
+    $AdminController->adminSingleUser();
+}elseif($uri === "/productImage"){
+      $AdminController->uploadNewProductImage();
 }
 
 

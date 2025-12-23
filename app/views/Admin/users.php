@@ -80,12 +80,12 @@
 
                         <td>
                             <?php if ($role === 'admin' || $role === 'staff'): ?>
-                                <button onclick="window.location='/adminSingleProduct?id=<?= $user['id'] ?>';" style="cursor:pointer;" class="btn btn-sm btn-outline-dark">Edit</button>
+                                <button onclick="window.location='/adminSingleUser?id=<?= $user['id'] ?>';" style="cursor:pointer;" class="btn btn-sm btn-outline-dark">Edit</button>
                             <?php endif; ?>
                         </td>
                         <td>
 
-                            <form action="/deleteProductProcess?id=<?= $product['id'] ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete product ?');">
+                            <form action="/deleteUserProcess?id=<?= $user['id'] ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete user ?');">
                                 <?php if ($role === 'admin'): ?>
                                     <button type="submit" class="btn btn-outline-danger btn-sm">
                                         Delete

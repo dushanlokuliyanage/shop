@@ -17,23 +17,34 @@
 
 <body>
 
-    <form action="/updateProductProcess" id="productForm" method="POST">
+    <?php include __DIR__ . "/../../views/Layouts/admin.php"  ?>
 
-        <input type="hidden" name="id" value="<?= $product['id'] ?>">
+    <!-- Single Product Start -->
+    <div class="container-fluid py-5 mt-5">
+        <div class="container py-5">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-8 col-xl-9">
+                    <div class="row g-4">
 
-        <!-- Single Product Start -->
-        <div class="container-fluid py-5 mt-5">
-            <div class="container py-5">
-                <div class="row g-4 mb-5">
-                    <div class="col-lg-8 col-xl-9">
-                        <div class="row g-4">
+                        <form action="productImage" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="<?= $product['id'] ?>">
+
                             <div class="col-lg-6">
                                 <div class="border rounded">
                                     <a href="#">
                                         <img src="/assets/images/<?= htmlspecialchars($product['image']) ?>" class="img-fluid rounded" alt="Image">
                                     </a>
                                 </div>
+
+                                <input type="file" id="fileInput" name="profileImage" accept="image/*">
+                                <input type="submit" class="btn btn-outline-dark" name="upload" value="Upload">
                             </div>
+                        </form>
+
+                        <form action="/updateProductProcess" id="productForm" method="POST">
+
+                            <input type="hidden" name="id" value="<?= $product['id'] ?>">
+
                             <div class="col-lg-6">
                                 <label for="productName">Name</label>
                                 <h4 class="fw-bold mb-3"><input type="text" value="<?= htmlspecialchars($product['name']) ?>" id="productName" name="productName" disabled></h4>
@@ -70,9 +81,7 @@
                                 </p>
 
 
-
                                 <div class="d-flex">
-
 
                                     <?php if ($role === 'admin' || $role === 'staff'): ?>
                                         <button type="button"
@@ -106,13 +115,13 @@
 
 
                             </div>
-                        </div>
                     </div>
                 </div>
-
-                <!-- Single Product End -->
             </div>
+
+            <!-- Single Product End -->
         </div>
+    </div>
     </form>
 
     <script>
