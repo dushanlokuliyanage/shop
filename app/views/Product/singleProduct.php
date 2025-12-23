@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +20,8 @@
 
 <body>
 
-    <?php include __DIR__ . '/../Layouts/header.php'  ?>
 
+    <?php include __DIR__ . '/../Layouts/header.php'  ?>
 
     <!-- Single Product Start -->
     <div class="container-fluid py-5 mt-5">
@@ -56,8 +61,9 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-outline-success">Add to Cart</button>
-                            <button class="btn btn-outline-secondary">Buy Now</button>
+                                <button class="btn btn-outline-success">Add to Cart</button>
+                                <button class="btn btn-outline-secondary">Buy Now</button>
+
                         </div>
                     </div>
                 </div>

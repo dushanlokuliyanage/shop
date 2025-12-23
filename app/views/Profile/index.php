@@ -22,6 +22,9 @@ if (!isset($_SESSION['user'])) {
     <div class="container vh-100 d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-8 col-lg-4 bg-gradien p-5 shadow rounded  " style="background-color: white;">
 
+
+
+
             <form action="/userUpdateProcess" method="POST" id="profileForm">
 
                 <div class="row g-2">
@@ -93,7 +96,11 @@ if (!isset($_SESSION['user'])) {
             <button class="btn btn-outline-success" name="delete" type="submit">Logout</button>
         </div>
     </form>
-
+    <form action="/">
+        <div class="col-6 d-grid">
+            <button class="btn btn-outline-success" type="submit">Home</button>
+        </div>
+    </form>
 
     <script src="/assets/js/script.js"></script>
 </body>

@@ -6,7 +6,11 @@
     <title>Admin Control</title>
 </head>
 <body>
-    <h1>Wel come Admin</h1>
+      <?php include __DIR__ . "/../../views/Layouts/admin.php"  ?>
+
+
+
+      
     
 </body>
 </html>

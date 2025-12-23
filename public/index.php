@@ -5,6 +5,8 @@ require_once __DIR__ . "/../app/controllers/ProfileController.php";
 require_once __DIR__ . "/../app/controllers/HomeController.php";
 require_once __DIR__ . "/../app/controllers/ProductController.php";
 require_once __DIR__ . "/../app/controllers/Admin/AdminController.php";
+require_once __DIR__ . '/../app/helpers/Auth.php';
+
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -40,6 +42,23 @@ if ($uri === "/") {
     $AdminController->logIn();
 } elseif ($uri === "/dashboard") {
     $AdminController->dashboard();
-} else {
+} elseif ($uri === "/products") {
+    $AdminController->products();
+} elseif ($uri === "/adminSingleProduct") {
+    $AdminController->adminSingleProduct();
+} elseif ($uri === "/deleteProductProcess") {
+    $AdminController->deleteProduct();
+} elseif ($uri === "/updateProductProcess") {
+    $AdminController->updateProduct();
+} elseif ($uri === "/adminProfile") {
+    $AdminController->adminProfile();
+} elseif ($uri === "/logoutAdminProcess") {
+    $AdminController->logoutAdmin();
+}elseif($uri === "/users"){
+    $AdminController->users();
+}
+
+
+else {
     echo "Page not found 404";
 }

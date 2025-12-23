@@ -1,6 +1,7 @@
 
 
 
+
 document.getElementById("updateBtn").onclick = function () {
   let inputs = document.querySelectorAll("#profileForm input");
   let select = document.querySelectorAll("#profileForm select");
@@ -9,6 +10,47 @@ document.getElementById("updateBtn").onclick = function () {
   document.getElementById("saveBtn").style.display = "inline-block";
   document.getElementById("updateBtn").style.display = "none";
 };
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   document.getElementById("adminUpdateBtn").onclick = function () {
+//     let fields = document.querySelectorAll(
+//       "#productForm input, #productForm textarea"
+//     );
+
+//     fields.forEach(field => field.disabled = false);
+
+//     document.getElementById("adminSaveBtn").style.display = "inline-block";
+//     this.style.display = "none";
+//   };
+// });
+
+// window.onload = function () {
+//   console.log("window loaded");
+
+//   const editBtn = document.getElementById("adminUpdateBtn");
+
+//   if (!editBtn) {
+//     console.log("❌ Edit button NOT found in DOM");
+//     return;
+//   }
+
+//   console.log("✅ Edit button FOUND");
+
+//   editBtn.onclick = function () {
+//     alert("EDIT CLICKED");
+
+//     const inputs = document.querySelectorAll("#productForm input");
+
+//     inputs.forEach(input => {
+//       input.disabled = false;
+//     });
+
+//     document.getElementById("adminSaveBtn").style.display = "inline-block";
+//     editBtn.style.display = "none";
+//   };
+// };
+
+
 
 // document.getElementById("updateBtn").onclick = function () {
   

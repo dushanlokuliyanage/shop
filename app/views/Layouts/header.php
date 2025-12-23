@@ -54,12 +54,18 @@
 
 
                 <?php  } else {
+                    if (!isset($_SESSION['user']['role'])) {
 
-                    $firstLet =   $_SESSION['user']['first_name'];
-                    $lastLet = $_SESSION['user']['last_name'];
+                        $firstLet =   $_SESSION['user']['first_name'];
+                        $lastLet = $_SESSION['user']['last_name'];
+                    }
                 ?>
                     <a href="/profile">
-                        <button class="me-2 btn btn-outline-primary btn-sm" id="profileBtn" style="width: 40px;"><?php echo $name =  strtoupper($firstLet[0] . $lastLet[0]); ?> </button>
+                        <button class="me-2 btn btn-outline-primary btn-sm" id="profileBtn" style="width: 40px;"><?php if (!isset($_SESSION['user']['role'])) {
+                                                                                                                        echo $name =  strtoupper($firstLet[0] . $lastLet[0]);
+                                                                                                                    }else{
+                                                                                                                    echo $_SESSION['admin']['user_name'];
+                                                                                                                    } ?> </button>
                     </a>
 
                     <!-- <form action="/addProducts">

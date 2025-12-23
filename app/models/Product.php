@@ -27,12 +27,12 @@ class Product
     }
 
 
-  public function getRelatedProducts()
+    public function getRelatedProducts()
     {
         $stmt = $this->pdo->prepare("SELECT * FROM `products` LIMIT 4");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
+   
 }
