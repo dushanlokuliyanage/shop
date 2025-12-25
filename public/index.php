@@ -62,6 +62,12 @@ if ($uri === "/") {
     $AdminController->adminSingleUser();
 }elseif($uri === "/productImage"){
       $AdminController->uploadNewProductImage();
+}elseif($uri === "/addProducts"){
+     $AdminController->addProducts();
+}elseif($uri === "/addProductProcess"){
+    $AdminController->addProductProcess();
+}elseif($uri === "/rateProduct"){
+    $ProductController->rating();
 }
 
 

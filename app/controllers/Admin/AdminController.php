@@ -256,4 +256,51 @@ class AdminController
             exit();
         }
     }
+
+
+    public function addProducts()
+    {
+        require_once __DIR__ . "/../../views/Admin/addProducts.php";
+    }
+
+    public function addProductProcess()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+            requireRole(['admin', 'staff']);
+
+            $adminModul = new Admin();
+
+            $ProductName = trim($_POST['productName']);
+            $productDes = trim($_POST['productDes']);
+            $productPrice = trim($_POST['productPrice']);
+            $productQty = trim($_POST['productQty']);
+
+            $imageName = $_FILES['productImage']['name'];
+            $tmpName = $_FILES['productImage']['tmp_name'];
+
+            $new_Image = uniqid() . "_" . $imageName;
+            $uploadPath = __DIR__ . "/../../../public/assets/images/" . $new_Image;
+            move_uploaded_file($tmpName, $uploadPath);
+
+
+            $saved = $adminModul->addProduct([
+
+                "productName" => $ProductName,
+                "productDes" => $productDes,
+                "productPrice" => $productPrice,
+                "productQty" => $productQty,
+                "Image" => $new_Image
+
+
+            ]);
+
+            if ($saved) {
+                header("Location: /products");
+                exit();
+            }
+        }
+    }
 }

@@ -45,7 +45,7 @@
                             </div>
                             <p class="mb-2"> <?= htmlspecialchars($product['description']) ?></p>
 
-                            <div class="input-group quantity mb-5" style="width: 100px;">
+                            <div class="input-group quantity mb-3" style="width: 100px;">
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-minus rounded bg-light border">
                                         -
@@ -61,8 +61,30 @@
                                 </div>
                             </div>
 
-                                <button class="btn btn-outline-success">Add to Cart</button>
-                                <button class="btn btn-outline-secondary">Buy Now</button>
+                            <div class="row mb-4">
+                                <form action="/rateProduct" method="POST" class="d-flex align-items-center gap-2">
+                                    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+
+                                    <label class="mb-0">Rate Product</label>
+
+                                    <select class="form-select form-select-sm w-auto" name="rating" required>
+                                        <option value="5">⭐⭐⭐⭐⭐</option>
+                                        <option value="4">⭐⭐⭐⭐</option>
+                                        <option value="3">⭐⭐⭐</option>
+                                        <option value="2">⭐⭐</option>
+                                        <option value="1">⭐</option>
+                                    </select>
+
+                                    <button type="submit" class="btn btn-sm btn-outline-dark">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+
+
+
+                            <button class="btn btn-outline-success">Add to Cart</button>
+                            <button class="btn btn-outline-secondary">Buy Now</button>
 
                         </div>
                     </div>

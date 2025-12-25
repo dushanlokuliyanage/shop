@@ -47,7 +47,7 @@ class Admin
         return $stmt->execute();
     }
 
-      public function deleteUserById($prodId)
+    public function deleteUserById($prodId)
     {
         $stmt = $this->pdo->prepare("DELETE FROM `users` WHERE `id` = :id");
         $stmt->bindParam(':id', $prodId, PDO::PARAM_INT);
@@ -87,21 +87,37 @@ class Admin
             $prodData['productDes'],
             $prodData['productQty'],
             $prodData['productPrice'],
-      
+
             $prodData['id'],
 
         ]);
     }
 
 
-    public function updateNewImage($prodData){
+    public function updateNewImage($prodData)
+    {
 
         $stmt = $this->pdo->prepare("UPDATE `products` SET `image` = ? WHERE `id` = ? ");
 
-          return $stmt->execute([
+        return $stmt->execute([
             $prodData['image'],
             $prodData['id']
 
+        ]);
+    }
+
+
+    public function addProduct($prodData)
+    {
+
+        $stmt = $this->pdo->prepare("INSERT INTO `products`(name, description , price, qty, image) VALUES (:productName,:productDes,:productPrice,:productQty, :image) ");
+
+        return $stmt->execute([
+            ':productName'  => $prodData['productName'],
+            ':productDes' => $prodData['productDes'],
+            ':productPrice' => $prodData['productPrice'],
+            ':productQty' => $prodData['productQty'],
+            ':image' => $prodData['Image'],
         ]);
     }
 }

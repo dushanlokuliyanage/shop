@@ -13,10 +13,10 @@
 
 <body>
 
-      <?php include __DIR__ . "/../../views/Layouts/admin.php"  ?>
+    <?php include __DIR__ . "/../../views/Layouts/admin.php"  ?>
 
-<style>
-         .table {
+    <style>
+        .table {
             table-layout: fixed;
             width: 100%;
         }
@@ -27,7 +27,7 @@
             font-size: 11px;
         }
 
-     
+
         .table td {
             word-wrap: break-word;
             white-space: normal;
@@ -38,7 +38,7 @@
         .table td {
             vertical-align: middle;
         }
-</style>
+    </style>
 
     <div class="container mt-4">
         <h3>Product List - <?= htmlspecialchars($productsCount) ?> Items </h3>
@@ -52,8 +52,14 @@
                     <th>DESCRIPTION</th>
                     <th>QTY</th>
                     <th>PRICE</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <?php if ($role === 'admin' || $role === 'staff'): ?>
+                        <th>Edit</th>
+                    <?php endif; ?>
+                    
+                    <?php if ($role === 'admin'): ?>
+                        <th>Delete</th>
+                    <?php endif; ?>
+
                 </tr>
             </thead>
 
@@ -70,22 +76,26 @@
                         <td> <?= mb_substr(htmlspecialchars($product['description']), 0, 70) ?></td>
                         <td><?= htmlspecialchars($product['qty']) ?></td>
                         <td>Rs.<?= htmlspecialchars($product['price']) ?>/-</td>
-                        <td>
-                            <?php if ($role === 'admin' || $role === 'staff'): ?>
-                                <button onclick="window.location='/adminSingleProduct?id=<?= $product['id'] ?>';" style="cursor:pointer;" class="btn btn-sm btn-outline-dark">Edit</button>
-                            <?php endif; ?>
-                        </td>
-                        <td>
 
-                            <form action="/deleteProductProcess?id=<?= $product['id'] ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete product ?');">
-                                <?php if ($role === 'admin'): ?>
+                        <?php if ($role === 'admin' || $role === 'staff'): ?>
+                            <td>
+                                <button onclick="window.location='/adminSingleProduct?id=<?= $product['id'] ?>';" style="cursor:pointer;" class="btn btn-sm btn-outline-dark">Edit</button>
+                            </td>
+                        <?php endif; ?>
+
+                        <?php if ($role === 'admin'): ?>
+                            <td>
+
+                                <form action="/deleteProductProcess?id=<?= $product['id'] ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete product ?');">
+
                                     <button type="submit" class="btn btn-outline-danger btn-sm">
                                         Delete
                                     </button>
-                                <?php endif; ?>
-                            </form>
 
-                        </td>
+                                </form>
+
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

@@ -2,6 +2,7 @@
 <?php
 
 require_once __DIR__ . "/../models/Product.php";
+require_once __DIR__ . "/../models/Rate.php";
 
 class ProductController
 {
@@ -21,7 +22,29 @@ class ProductController
         if (!$product) {
             die("Product not found");
         }
-        
+
         require_once __DIR__ . "/../views/Product/singleProduct.php";
+    }
+
+
+
+    public function rating()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $productId = $_POST['product_id'];
+            $productRating = $_POST['rating'];
+            var_dump($_POST);
+            $ratingModel = new Rating();
+
+            $ratingModel->storeRating([
+                "id" => $productId,
+                "rate" => $productRating
+            ]);
+
+            header("Location: singleProduct?id=" . $productId);
+            exit();
+        }
     }
 }

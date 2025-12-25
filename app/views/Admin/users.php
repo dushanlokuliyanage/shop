@@ -9,15 +9,15 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
- 
+
 </head>
 
 <body>
 
-      <?php include __DIR__ . "/../../views/Layouts/admin.php"  ?>
+    <?php include __DIR__ . "/../../views/Layouts/admin.php"  ?>
 
-<style>
-         .table {
+    <style>
+        .table {
             table-layout: fixed;
             width: 100%;
         }
@@ -28,7 +28,7 @@
             font-size: 11px;
         }
 
-     
+
         .table td {
             word-wrap: break-word;
             white-space: normal;
@@ -39,7 +39,7 @@
         .table td {
             vertical-align: middle;
         }
-</style>
+    </style>
 
     <div class="container mt-4">
         <h3>Product List - <?= htmlspecialchars($userCount) ?> Items </h3>
@@ -58,8 +58,15 @@
                     <th>GENDER</th>
                     <th>NIC</th>
                     <th>REGISTER DATE</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+
+                    <?php if ($role === 'admin' || $role === 'staff'): ?>
+                        <th>Edit</th>
+                    <?php endif; ?>
+
+                    <?php if ($role === 'admin'): ?>
+                        <th>Delete</th>
+                    <?php endif; ?>
+                    
                 </tr>
             </thead>
 
@@ -77,23 +84,27 @@
                         <td><?= htmlspecialchars($user['gender']) ?></td>
                         <td><?= htmlspecialchars($user['nic']) ?></td>
                         <td><?= htmlspecialchars($user['reg_date']) ?></td>
+                        <?php if ($role === 'admin' || $role === 'staff'): ?>
+                            <td>
 
-                        <td>
-                            <?php if ($role === 'admin' || $role === 'staff'): ?>
                                 <button onclick="window.location='/adminSingleUser?id=<?= $user['id'] ?>';" style="cursor:pointer;" class="btn btn-sm btn-outline-dark">Edit</button>
-                            <?php endif; ?>
-                        </td>
-                        <td>
 
-                            <form action="/deleteUserProcess?id=<?= $user['id'] ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete user ?');">
-                                <?php if ($role === 'admin'): ?>
+                            </td>
+                        <?php endif; ?>
+
+                        <?php if ($role === 'admin'): ?>
+                            <td>
+
+                                <form action="/deleteUserProcess?id=<?= $user['id'] ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete user ?');">
+
                                     <button type="submit" class="btn btn-outline-danger btn-sm">
                                         Delete
                                     </button>
-                                <?php endif; ?>
-                            </form>
 
-                        </td>
+                                </form>
+
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
