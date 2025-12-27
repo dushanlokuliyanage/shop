@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Sysco</title>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
 </head>
 
@@ -17,14 +18,14 @@
     <div id="carouselExampleInterval" class="carousel slide" style="padding-top: 20px; padding-left: 35px; padding-right: 30px; padding-bottom: 50px;" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item" data-bs-interval="10000">
-                <img src="/assets/images/NSBM-Convocation_2025.jpg" alt="" width="1450px" height="600px">
+                <img src="/assets/images/Christmas-2025-02.png" alt="" width="1450px" height="600px">
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-                <img src="/assets/images/2025-Intake-banner-04.jpg" alt="" width="1450px" height="600px">
+                <img src="/assets/images/2025-Intake-banner-04.png" alt="" width="1450px" height="600px">
 
             </div>
             <div class="carousel-item active">
-                <img src="/assets/images/MBA-WEB-banner-02.jpg" alt="" width="1450px" height="600px">
+                <img src="/assets/images/MBA-WEB-banner-02.png" alt="" width="1450px" height="600px">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -49,8 +50,9 @@
                 <?php foreach ($products as $product): ?>
 
                     <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="best-card"  onclick="window.location='/singleProduct?id=<?= $product['id'] ?>';" style="cursor:pointer;">
+                        <div class="best-card" onclick="window.location='/singleProduct?id=<?= $product['id'] ?>';" style="cursor:pointer;">
 
+                         <input type="hidden" name="id" value="<?= $product['id'] ?>">
 
                             <!-- Image -->
                             <div class="card mb-2">
@@ -69,9 +71,10 @@
                                 </p>
 
                                 <!-- Rating -->
-                                <div >
-                                    ★★★★☆
-                                </div>
+                               
+                                    <div>⭐ Rating: <?= $productRate ?>/5</div>
+                               
+
 
                                 <!-- Price + Cart -->
                                 <div class="d-flex justify-content-between align-items-center">
@@ -79,14 +82,14 @@
                                         Rs.<?= htmlspecialchars($product['price']) ?>/-
                                     </span>
 
-                                     <!-- <a href="/singleProductView?product=<?= $product['id'] ?>"
+                                    <!-- <a href="/singleProductView?product=<?= $product['id'] ?>"
                                         class="btn btn-sm btn-success">
                                     Add to cart
                                     </a> -->
 
                                     <a href="/singleProduct?id=<?= $product['id'] ?>"
                                         class="btn btn-sm btn-outline-secondary">
-                                       Buy
+                                        Buy
                                     </a>
                                 </div>
                             </div>

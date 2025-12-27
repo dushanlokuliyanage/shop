@@ -17,6 +17,7 @@ class ProductController
         $productId = $_GET['id'];
         $productModel = new Product();
         $product = $productModel->getProductById($productId);
+        $productRate = $productModel->getAvarageRate($productId);
         $RelatedProducts = $productModel->getRelatedProducts();
 
         if (!$product) {

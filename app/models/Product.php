@@ -34,5 +34,12 @@ class Product
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-   
+    public function getAvarageRate($prodId)
+    {
+
+        $stmt = $this->pdo->prepare("SELECT ROUND(AVG(rating),1) as avg_rating FROM `ratings` WHERE `product_id` = :id");
+        $stmt->execute(['id' => $prodId]);
+        return  $stmt->fetch()['avg_rating'] ?? 0;
+    }
+
 }

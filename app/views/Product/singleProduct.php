@@ -41,7 +41,7 @@
                             <p class="mb-3">Category: Fruits</p>
                             <h5 class="mb-3 d-flex" style="font-family:Verdana, Geneva, Tahoma, sans-serif">Rs.<?= htmlspecialchars($product['price']) ?>/-</h5>
                             <div class="d-flex mb-4">
-                                ★★★★☆
+                            ⭐ Rating: <?= $productRate ?>/5
                             </div>
                             <p class="mb-2"> <?= htmlspecialchars($product['description']) ?></p>
 
@@ -61,26 +61,28 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-4">
-                                <form action="/rateProduct" method="POST" class="d-flex align-items-center gap-2">
-                                    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
 
-                                    <label class="mb-0">Rate Product</label>
+                            <?php if (isset($_SESSION['user'])): ?>
+                                <div class="row mb-4">
+                                    <form action="/rateProduct" method="POST" class="d-flex align-items-center gap-2">
+                                        <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
 
-                                    <select class="form-select form-select-sm w-auto" name="rating" required>
-                                        <option value="5">⭐⭐⭐⭐⭐</option>
-                                        <option value="4">⭐⭐⭐⭐</option>
-                                        <option value="3">⭐⭐⭐</option>
-                                        <option value="2">⭐⭐</option>
-                                        <option value="1">⭐</option>
-                                    </select>
+                                        <label class="mb-0">Rate Product</label>
 
-                                    <button type="submit" class="btn btn-sm btn-outline-dark">
-                                        Submit
-                                    </button>
-                                </form>
-                            </div>
+                                        <select class="form-select form-select-sm w-auto" name="rating" required>
+                                            <option value="5">⭐⭐⭐⭐⭐</option>
+                                            <option value="4">⭐⭐⭐⭐</option>
+                                            <option value="3">⭐⭐⭐</option>
+                                            <option value="2">⭐⭐</option>
+                                            <option value="1">⭐</option>
+                                        </select>
 
+                                        <button type="submit" class="btn btn-sm btn-outline-dark">
+                                            Submit
+                                        </button>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
 
 
                             <button class="btn btn-outline-success">Add to Cart</button>
