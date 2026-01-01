@@ -102,7 +102,7 @@ class AuthController
                 exit();
             }
 
-            //   $_SESSION['user'] = $user['id'];
+         $_SESSION['user'] = $user;
             header("Location: /profile");
             exit();
         }

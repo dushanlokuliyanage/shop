@@ -53,6 +53,7 @@
                         <div class="best-card" onclick="window.location='/singleProduct?id=<?= $product['id'] ?>';" style="cursor:pointer;">
 
                          <input type="hidden" name="id" value="<?= $product['id'] ?>">
+               
 
                             <!-- Image -->
                             <div class="card mb-2">
