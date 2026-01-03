@@ -9,12 +9,13 @@ class HomeController
     {
 
         $productModel = new Product();
-        $prodID = $_GET['id'];
-        var_dump($prodID);
+        // $productId = $_GET['id'];
+        // $productRate = $productModel->getAvarageRate($productId);
         $products = $productModel->getAllProducts();
+        $categories = $productModel->getAllCategory();
 
 
-        $productRate = $productModel->getAvarageRate($prodID);
+        // $productRate = $productModel->getAvarageRate($prodID);
         require_once __DIR__ . "/../views/Home/index.php";
     }
 }

@@ -17,7 +17,7 @@ class ProductController
         $productId = $_GET['id'];
         $productModel = new Product();
         $product = $productModel->getProductById($productId);
-        $productRate = $productModel->getAvarageRate($productId);
+       // $productRate = $productModel->getAvarageRate($productId);
         $RelatedProducts = $productModel->getRelatedProducts();
 
         if (!$product) {
@@ -36,16 +36,42 @@ class ProductController
 
             $productId = $_POST['product_id'];
             $productRating = $_POST['rating'];
-            var_dump($_POST);
+            $userId = $_POST['user_id'];
+
+
             $ratingModel = new Rating();
 
             $ratingModel->storeRating([
                 "id" => $productId,
+                "user" => $userId,
                 "rate" => $productRating
             ]);
 
             header("Location: singleProduct?id=" . $productId);
             exit();
+        }
+    }
+
+
+    public function filterProduct()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+            $productModel = new Product();
+
+
+            $filters = [
+                'category' => $_GET['category'] ?? null,
+                'price'    => $_GET['price'] ?? null,
+                'rating'   => $_GET['rating'] ?? null,
+
+            ];
+
+            $products = $productModel->filter($filters);
+            $categories = $productModel->getAllCategory();
+
+            require_once __DIR__ . "/../views/Home/index.php";
         }
     }
 }

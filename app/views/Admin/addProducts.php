@@ -26,6 +26,9 @@
         <label for="price">Price</label>
         <input type="text" name="productPrice" required>
 
+                <label for="category">Category</label>
+        <input type="text" name="productPrice" required>
+
         <label for="qty">Quntity</label>
         <input type="text" name="productQty" required>
 

@@ -68,6 +68,8 @@ if ($uri === "/") {
     $AdminController->addProductProcess();
 }elseif($uri === "/rateProduct"){
     $ProductController->rating();
+}elseif($uri === "/filterProduct"){
+        $ProductController->filterProduct();
 }
 
 

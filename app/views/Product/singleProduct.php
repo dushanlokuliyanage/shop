@@ -66,6 +66,7 @@
                                 <div class="row mb-4">
                                     <form action="/rateProduct" method="POST" class="d-flex align-items-center gap-2">
                                         <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
 
                                         <label class="mb-0">Rate Product</label>
 

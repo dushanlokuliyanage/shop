@@ -19,6 +19,12 @@ class Product
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllCategory()
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM `categories`");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getProductById($prodId)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM `products` WHERE `id` = :id");
@@ -37,9 +43,35 @@ class Product
     public function getAvarageRate($prodId)
     {
 
-        $stmt = $this->pdo->prepare("SELECT ROUND(AVG(rating),1) as avg_rating FROM `ratings` WHERE `product_id` = :id");
+        $stmt = $this->pdo->prepare("SELECT `rating_id` FROM `products` WHERE `product_id` = :id");
         $stmt->execute(['id' => $prodId]);
-        return  $stmt->fetch()['avg_rating'] ?? 0;
+        return  $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+    public function filter($filters)
+    {
+
+
+        $sql = "SELECT * FROM `products` WHERE `qty` > 0";
+        $params = [];
+
+        if (!empty($filters['category'])) {
+            $sql .= " AND `category_id` = :category";
+            $params['category'] = $filters['category'];
+        }
+
+        if (!empty($filters['rating'])) {
+            $sql .= " AND `rating_id` >= :rating";
+            $params['rating'] = $filters['rating'];
+        }
+
+        if (!empty($filters['price'])) {
+            $sql .= " ORDER BY `price` " . ($filters['price'] === 'low' ? 'ASC' : 'DESC');
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
 }
