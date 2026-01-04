@@ -41,7 +41,7 @@
                             <p class="mb-3">Category: Fruits</p>
                             <h5 class="mb-3 d-flex" style="font-family:Verdana, Geneva, Tahoma, sans-serif">Rs.<?= htmlspecialchars($product['price']) ?>/-</h5>
                             <div class="d-flex mb-4">
-                            ⭐ Rating: <?= $rate['rating_id'] ?? 0 ?>/5
+                            ⭐ Rating: <?= $product['rating_id'] ?>/5
 
                             </div>
                             <p class="mb-2"> <?= htmlspecialchars($product['description']) ?></p>

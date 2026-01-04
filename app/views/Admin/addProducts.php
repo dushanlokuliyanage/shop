@@ -12,7 +12,11 @@
 </head>
 
 <body>
+
+    <?php include __DIR__ . "/../../views/Layouts/admin.php"  ?>
+
     <br>
+    
     <h5>Add Your Products</h5> <br>
 
     <form action="/addProductProcess" method="POST" enctype="multipart/form-data">
@@ -26,7 +30,7 @@
         <label for="price">Price</label>
         <input type="text" name="productPrice" required>
 
-                <label for="category">Category</label>
+        <label for="category">Category</label>
         <input type="text" name="productPrice" required>
 
         <label for="qty">Quntity</label>

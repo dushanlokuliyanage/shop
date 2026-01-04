@@ -111,7 +111,7 @@
 
                                 <!-- Rating -->
 
-                                <div>⭐ Rating: /5</div>
+                                <div>⭐ Rating:  <?= $product['rating_id'] ?> /5</div>
 
 
 
