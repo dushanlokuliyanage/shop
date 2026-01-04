@@ -40,13 +40,27 @@ class Product
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAvarageRate($prodId)
-    {
+    // public function getAvarageRate($prodId)
+    // {
 
-        $stmt = $this->pdo->prepare("SELECT `rating_id` FROM `products` WHERE `product_id` = :id");
-        $stmt->execute(['id' => $prodId]);
-        return  $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+    //     $stmt = $this->pdo->prepare("SELECT ROUND(AVG(rating),1) as avg_rating FROM `ratings` WHERE `product_id` = :id");
+    //     $stmt->execute(['id' => $prodId]);
+    //     return  $stmt->fetch()['avg_rating'] ?? 0;
+    // }
+
+   public function getAverageRate($prodId)
+{
+    $stmt = $this->pdo->prepare(
+        "SELECT rating_id
+         FROM products
+         WHERE id = :id"
+    );
+
+    $stmt->execute([':id' => $prodId]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
 
 
     public function filter($filters)

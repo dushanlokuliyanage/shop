@@ -25,7 +25,7 @@ class Rating
 
         ]);
 
-        $this->updateProductRating($rateData['id']);
+         $this->updateProductRating($rateData['id']);
     }
 
 
@@ -42,8 +42,9 @@ class Rating
         $stmt = $this->pdo->prepare(
             "UPDATE `products`
              SET `rating_id` = :avg
-             WHERE id = :id"
+             WHERE `id` = :id"
         );
+
         $stmt->execute([
             'avg' => round($data['avg_rating'], 1),
             'id' => $productId
