@@ -19,11 +19,11 @@ if (!isset($_SESSION['user'])) {
 </head>
 
 <body style="background-color: lightyellow;">
+
+    <?php include __DIR__ . '/../Layouts/header.php'  ?>
+
     <div class="container vh-100 d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-8 col-lg-4 bg-gradien p-5 shadow rounded  " style="background-color: white;">
-
-
-
 
             <form action="/userUpdateProcess" method="POST" id="profileForm">
 
@@ -84,23 +84,22 @@ if (!isset($_SESSION['user'])) {
             </form>
 
             <form action="/deleteAccountProcess" onsubmit="return confirm('Are you sure you want to delete your account?');">
-                <div class="col-12 d-grid">
+                <div class="col-12 d-grid ">
                     <button class="btn btn-outline-danger" name="delete" type="submit">Delete Account</button>
                 </div>
             </form>
+
+
+            <form action="/logoutUserProcess" onsubmit="return confirm('Are you sure you want to logout your account?');">
+                <div class="col-12 d-grid mt-2">
+                    <button class="btn btn-outline-success" name="delete" type="submit">Logout</button>
+                </div>
+            </form>
+
         </div>
     </div>
 
-    <form action="/logoutUserProcess" onsubmit="return confirm('Are you sure you want to logout your account?');">
-        <div class="col-6 d-grid">
-            <button class="btn btn-outline-success" name="delete" type="submit">Logout</button>
-        </div>
-    </form>
-    <form action="/">
-        <div class="col-6 d-grid">
-            <button class="btn btn-outline-success" type="submit">Home</button>
-        </div>
-    </form>
+
 
     <script src="/assets/js/script.js"></script>
 </body>

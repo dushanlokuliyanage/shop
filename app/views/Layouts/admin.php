@@ -38,12 +38,6 @@
 
                 </ul>
 
-
-                <!-- <form class="d-flex" role="search">
-                    <input class="form-control-sm me-2 " style="width: 500px;" type="search" placeholder="Search" id="searchBar" aria-label="Search" />
-                    <button class="btn btn-outline-success me-2 btn-sm " id="searchBtn" type="submit" style="width: 100px;">Find</button>
-                </form> -->
-
                 <form action="/addProducts">
                     <?php if ($role === 'admin' || $role === 'staff'): ?>
                         <button type="submit" class="me-4 btn btn-outline-success  btn-sm">Add Product</button>
@@ -62,21 +56,6 @@
                 <a href="/adminProfile" style="text-decoration: none;" class="me-2">
                     <h5 class="me-2"> <?php echo $name ?>M</h5>
                 </a>
-
-
-                <!-- 
-          <form action="/listProduct">
-                    <button type="submit" class="me-2 btn btn-outline-primary  btn-sm">List Product</button>
-                </form>
-
-                <form action="/logout">
-                    <button type="submit" class="me-2 btn btn-outline-dark hide btn-sm" id="logoutBtn">Logout</button>
-                </form> -->
-
-                <!-- <form action="/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
-                        <button type="submit" class="me-2 btn btn-outline-danger hide btn-sm" id="deleteBtn">Delect Account</button>
-                    </form> -->
-
 
 
             </div>

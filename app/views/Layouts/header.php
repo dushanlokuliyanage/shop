@@ -12,7 +12,6 @@
 
 <body>
 
-
     <nav class="navbar navbar-expand-lg bg-gradient-custom" style="position: sticky; top:0; z-index: 1000;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Sysco</a>
@@ -36,7 +35,6 @@
 
                 </ul>
 
-
                 <form class="d-flex" role="search">
                     <input class="form-control-sm me-2 " style="width: 500px;" type="search" placeholder="Search" id="searchBar" aria-label="Search" />
                     <button class="btn btn-outline-success me-2 btn-sm " id="searchBtn" type="submit" style="width: 100px;">Find</button>
@@ -52,7 +50,6 @@
                         <button class="btn btn-outline-primary  btn-sm " type="submit">LogIn</button>
                     </a>
 
-
                 <?php  } else {
                     if (!isset($_SESSION['user']['role'])) {
 
@@ -61,32 +58,16 @@
                     }
                 ?>
                     <a href="/profile">
-                        <button class="me-2 btn btn-outline-primary btn-sm" id="profileBtn" style="width: 40px;"><?php if (!isset($_SESSION['user']['role'])) {
-                                                                                                                        echo $name =  strtoupper($firstLet[0] . $lastLet[0]);
-                                                                                                                    }else{
-                                                                                                                    echo $_SESSION['admin']['user_name'];
-                                                                                                                    } ?> </button>
+                        <button class="me-2 btn btn-outline-primary btn-sm" id="profileBtn" style="width: 40px;">
+                            <?php if (!isset($_SESSION['user']['role'])) {
+                                echo $name =  strtoupper($firstLet[0] . $lastLet[0]); } else {
+                                echo $_SESSION['admin']['user_name'];
+                            } ?>
+                        </button>
                     </a>
-
-                    <!-- <form action="/addProducts">
-                        <button type="submit" class="me-2 btn btn-outline-success  btn-sm">Add Product</button>
-                    </form>
-
-                    <form action="/listProduct">
-                        <button type="submit" class="me-2 btn btn-outline-primary  btn-sm">List Product</button>
-                    </form>
-
-                    <form action="/logout">
-                        <button type="submit" class="me-2 btn btn-outline-dark hide btn-sm" id="logoutBtn">Logout</button>
-                    </form> -->
-
-                    <!-- <form action="/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
-                        <button type="submit" class="me-2 btn btn-outline-danger hide btn-sm" id="deleteBtn">Delect Account</button>
-                    </form> -->
 
 
                 <?php
-
 
                 }
 
